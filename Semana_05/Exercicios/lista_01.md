@@ -22,7 +22,7 @@ var x = 5;
 console.log(y);
 let y = 10;
 ```
-a) A saída será undefined seguido de erro 
+a) A saída será undefined seguido de erro e a alternativa correta, porque a varíavel "VAR" deveria estar acima do console.log()
 
 b) A saída será 5 seguido de 10
 
@@ -45,7 +45,7 @@ console.log(soma(2, 0));
 
 a) Substituir if (a || b === 0) por if (a === 0 || b === 0)
 
-b) Substituir if (a || b === 0) por if (a === 0 && b === 0)
+b) Substituir if (a || b === 0) por if (a === 0 && b === 0) A alternativa B e a correta, porque ao rodar o codigo esta resultando em 2 diferente de antes, que não era possivel obter um numero.
 
 c) Substituir if (a || b === 0) por if (a && b === 0)
 
@@ -78,7 +78,13 @@ console.log(calcularPreco("eletrônico"));
 
 a) O código imprime 1000.
 
-b) O código imprime 200.
+b) O código imprime 200.   No código, quando o valor de tipo é "eletrônico", o switch entra no case "eletrônico" e define o valor de preco como 1000. Porém, como não tem um break depois desse case, o código continua e vai para o próximo case, que é o case "vestuário". Nesse case, o valor de preco é atualizado para 200.
+
+Como o break só aparece depois do case "vestuário", o código sai do switch e retorna o valor final de preco, que agora é 200.
+
+Portanto, o código vai imprimir 200 no console.
+
+A resposta correta é b) O código imprime 200.
 
 c) O código imprime 50.
 
@@ -99,7 +105,11 @@ b) 6
 
 c) 18
 
-d) 24
+d) 24 A alternativa correta e a letra D, pois O código retorna 24 porque:
+
+O map(x => x * 2) multiplica cada número do array por 2, gerando [2, 4, 6, 8, 10].
+O filter(x => x > 5) filtra os números maiores que 5, resultando em [6, 8, 10].
+O reduce((a, b) => a + b, 0) soma os valores 6 + 8 + 10, resultando = 24.
 ______
 **5) Qual será o conteúdo do array lista após a execução do código? Indique a alternativa correta e justifique sua resposta.**
 
@@ -113,7 +123,7 @@ a) ["banana", "maçã", "uva", "abacaxi", "manga", "laranja"]
 
 b) ["banana", "abacaxi", "manga"]
 
-c) ["banana", "abacaxi", "manga", "laranja"]
+c) ["banana", "abacaxi", "manga", "laranja"]  e a resposta correta, pois O método splice começa a partir do índice 1, remove dois elementos ("maçã" e "uva") e adiciona "abacaxi" e "manga". O array final é ["banana", "abacaxi", "manga", "laranja"].
 
 d) ["banana", "maçã", "uva", "abacaxi", "manga"]
 ______
@@ -123,7 +133,8 @@ I. A herança é utilizada para compartilhar métodos e propriedades entre class
 II. Em JavaScript, a herança é implementada através da palavra-chave `extends`.
 
 
-a) As duas afirmações são verdadeiras, e a segunda justifica a primeira.
+a) As duas afirmações são verdadeiras, e a segunda justifica a primeira. E a resposta correta, pois Ambas as afirmações estão corretas, e a segunda afirmação (uso da palavra-chave extends) realmente justifica a primeira, pois é a maneira como a herança é implementada em JavaScript.
+
 
 b) As duas afirmações são verdadeiras, mas a segunda não justifica a primeira.
 
@@ -165,7 +176,13 @@ III) O código não funciona corretamente, pois Funcionario não pode herdar de 
 
 Quais das seguintes afirmações são verdadeiras sobre o código acima?
 
-a) I e II são verdadeiras.
+a) I e II são verdadeiras.   A alternativa correta é a) I e II são verdadeiras.
+
+Justificativa resumida:
+
+I: A classe Funcionario herda de Pessoa, portanto, pode acessar os atributos nome e idade diretamente, já que esses são definidos no construtor da classe pai.
+II: O método apresentar() da classe Funcionario sobrepõe o método da classe Pessoa e chama o método da classe pai usando super.apresentar().
+III: O JavaScript suporta herança de classes a partir do ES6, então a afirmação é falsa.
 
 b) I, II e III são verdadeiras.
 
@@ -182,7 +199,10 @@ ______
 
 a) A asserção é falsa e a razão é verdadeira.
 
-b) A asserção é verdadeira e a razão é falsa.
+b) A asserção é verdadeira e a razão é falsa.  A alternativa correta é b) porque A asserção é verdadeira e a razão é falsa.
+Asserção: O polimorfismo realmente permite que objetos de diferentes tipos respondam de maneiras diferentes à mesma mensagem. Isso é verdadeiro.
+Razão: A afirmação de que o polimorfismo é implementado por sobrecarga de métodos está errada, pois JavaScript não suporta sobrecarga de métodos.
+Portanto, a asserção é verdadeira e a razão é falsa.
 
 c) A asserção é verdadeira e a razão é verdadeira, mas a razão não explica a asserção.
 
@@ -193,20 +213,44 @@ ______
 # Questões dissertativas
 9) O seguinte código deve retornar a soma do dobro dos números de um array, mas contém erros. Identifique os problema e corrija o código para que funcione corretamente. Adicione comentários ao código explicado sua solução para cada problema.
 
-```javascript
 function somaArray(numeros) {
-
-    for (i = 0; i < numeros.size; i++) {
-        soma = 2*numeros[i];
+    let soma = 0;  // Inicializa a variável soma
+    for (let i = 0; i < numeros.length; i++) {  // Usar .length para o tamanho do array
+        soma += numeros[i];  // Soma cada elemento ao total
     }
-    return soma;
+    return soma;  // Retorna o valor total
 }
-console.log(somaArray([1, 2, 3, 4]));
-```
+
+console.log(somaArray([1, 2, 3, 4]));  // Saída: 10
+
 ______
 10) Crie um exemplo prático no qual você tenha duas classes:
+// Função para criar um Produto
+function criarProduto(nome, preco) {
+    return {
+        nome: nome,
+        preco: preco,
+        calcularDesconto: function() {
+            return this.preco * 0.9; // Aplica 10% de desconto
+        }
+    };
+}
 
-- Uma classe `Produto` com atributos `nome` e `preco`, e um método `calcularDesconto()` que aplica um desconto fixo de 10% no preço do produto.
-- Uma classe `Livro` que herda de `Produto` e modifica o método `calcularDesconto()`, aplicando um desconto de 20% no preço dos livros.
+// Função para criar um Livro (modificando o desconto)
+function criarLivro(nome, preco) {
+    let produto = criarProduto(nome, preco); // Cria um Produto
+    produto.calcularDesconto = function() {
+        return this.preco * 0.8; // Aplica 20% de desconto para livros
+    };
+    return produto;
+}
 
-Explique como funciona a herança nesse contexto e como você implementaria a modificação do método na classe `Livro`.
+// Exemplo de uso:
+const produto1 = criarProduto("Camiseta", 100);
+console.log(`Preço do produto com desconto: R$ ${produto1.calcularDesconto()}`); // Esperado: 90
+
+const livro1 = criarLivro("JavaScript para Iniciantes", 80);
+console.log(`Preço do livro com desconto: R$ ${livro1.calcularDesconto()}`); // Esperado: 64
+
+
+A parte da herança: Herança: Em vez de usar a herança com extends, modifiquei diretamente o método calcularDesconto() no objeto livro1.
